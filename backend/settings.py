@@ -19,7 +19,6 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -29,11 +28,10 @@ SECRET_KEY = 'i*-0+f+4#0jco)#n-i^wneozp==3!n4ibz11ww@=(87&vtqvxs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user'
 ]
-
-ALLOWED_HOSTS = ['react-dj-todoapp.herokuapp.com', '127.0.0.1:8000', 'localhost']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,7 +122,6 @@ CORS_ORIGIN_WHITELIST = [
     'https://localhost:3000'
 ]
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
@@ -139,18 +134,15 @@ STATICFILES_DIRS = (
     os.path.join(REACT_APP_DIR, 'build', 'static'),
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().root
-
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
-
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
 # Run locally
 # options = DATABASES['default'].get('OPTIONS', {})
