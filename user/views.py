@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 import os
 import logging
 from django.http import HttpResponse
@@ -28,3 +27,4 @@ class FrontendAppView(View):
                 """,
                 status=501,
             )
+    
