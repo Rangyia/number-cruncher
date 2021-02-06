@@ -4,6 +4,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
+    "heroku-prebuild": "NODE_ENV=production cd frontend/ && yarn install && yarn build && cd ..",
     "dev": "webpack --mode development --watch ./frontend/src/index.js -o ./frontend/static/frontend/",
     "build": "webpack --mode production ./frontend/src/index.js -o ./frontend/static/frontend/"
   },
