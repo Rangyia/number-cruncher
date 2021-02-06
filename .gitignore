@@ -9,7 +9,7 @@ db.sqlite3
 media
 
 # don't track virtualenv, ever!
-venv/
+venv
 
 # don't track node_modules because we'll be using yarn install and it will create this
 node_modules
