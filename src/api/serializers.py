@@ -15,18 +15,3 @@ class UserSerializer(serializers.ModelSerializer):
             'manager', 
             'admin'
         )
-
-class StaffSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User 
-        fields = (
-            'username', 
-            'password', 
-            'created_at', 
-            'first_name', 
-            'last_name', 
-            'dob',
-            'staff',
-            'manager',
-            'admin'
-        )
