@@ -26,9 +26,9 @@ SECRET_KEY = 'g6*eh+s3y_gpoani1u1+0it*q$^5v6%9m-)4)uz%#3^p9clwm7'
 DEBUG = True
 
 # Allowed hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-# Allowed cors origin for application
+# Allow cross domains
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'frontend',
     'api',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
