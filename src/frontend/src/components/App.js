@@ -33,15 +33,20 @@ class App extends Component {
 
     render() {
         return (
+            <div>
+                <h1>Number Cruncher</h1>
             <ul>
                 {this.state.data.map(user => {
                     return (
-                        <li key={user.id}>
-                            {user.username} - {user.password}
-                        </li>
+                        <div>
+                            <li key={user.id}>
+                                {user.username} - {user.password}
+                            </li>
+                        </div>
                     );
                 })}
             </ul>
+            </div>
         );
     }
 }
