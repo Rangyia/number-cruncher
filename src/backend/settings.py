@@ -126,3 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Cross origin: allow from frontend as this is where our app will be running
+CORS_ORIGIN_ALLOW_ALL = True
