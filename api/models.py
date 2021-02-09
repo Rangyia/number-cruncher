@@ -23,7 +23,7 @@ class User(models.Model):
     manager = models.BooleanField('manager', default=False)
     admin = models.BooleanField('admin', default=False)
 
-    # Account Dates
+    # Account Dates -> Change these to date fields
     password_created_at = models.DateTimeField('password_created_date', default=datetime.now)
     suspension_start_date = models.DateTimeField('suspension_start_date', default=datetime.now)
     suspension_end_date = models.DateTimeField('suspension_end_date', default=datetime.now)
