@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 # OS imports
 import os
+import sys
 from pathlib import Path
 
 # Database imports
@@ -20,9 +21,10 @@ import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-BASE_DIR = Path(__file__).resolve().parent.parent
-REACT_APP_DIR = os.path.join(ROOT_DIR, 'frontend')
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent # root
+BASE_DIR = Path(__file__).resolve().parent.parent # backend 
+REACT_APP_DIR = os.path.join(ROOT_DIR, 'frontend') # frontend
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps')) # backend/apps
 
 
 # Quick-start development settings - unsuitable for production
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Number cruncher apps
+    'accounts',
 ]
 
 MIDDLEWARE = [
