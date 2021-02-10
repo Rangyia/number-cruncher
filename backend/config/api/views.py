@@ -5,9 +5,6 @@ from django.views.generic import View
 from django.conf import settings
 from rest_framework import generics
 
-from .models import User
-from .serializers import UserSerializer
-
 class FrontendAppView(View):
     """
     Serves the compiled frontend entry point (only works if you have run `yarn
@@ -29,8 +26,3 @@ class FrontendAppView(View):
                 """,
                 status=501,
             )
-
-# Get the users
-class UserList(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
