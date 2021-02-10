@@ -5,6 +5,17 @@ from django.views.generic import View
 from django.conf import settings
 from rest_framework import generics
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated 
+
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)             # <-- And here
+
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)
+
 class FrontendAppView(View):
     """
     Serves the compiled frontend entry point (only works if you have run `yarn

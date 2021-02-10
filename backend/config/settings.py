@@ -44,14 +44,20 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-Party apps
     'rest_framework',
+    'rest_framework.authtoken',  # <-- Here
     'corsheaders',
+
+    # Number cruncher apps
 ]
 
 MIDDLEWARE = [
