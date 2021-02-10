@@ -6,5 +6,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    # re_path(r'^', FrontendAppView.as_view())
+    re_path(r'^', FrontendAppView.as_view())
 ]
