@@ -161,7 +161,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-# Configure database for Heroku.
+# # Configure database for Heroku.
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
