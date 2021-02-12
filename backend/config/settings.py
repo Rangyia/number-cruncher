@@ -60,8 +60,10 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Number cruncher apps
-    'accounts',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser' # new
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,7 +163,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-# # Configure database for Heroku.
+# # # Configure database for Heroku.
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
