@@ -182,11 +182,11 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REUQIRED = False
 
 
-# # # Configure database for Heroku.
-# DATABASES = {}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# # Configure database for Heroku.
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
-# options = DATABASES['default'].get('OPTIONS', {})
-# options.pop('sslmode', None) 
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None) 
