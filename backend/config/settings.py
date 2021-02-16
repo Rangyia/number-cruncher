@@ -42,7 +42,6 @@ ALLOWED_HOSTS = ['*']
 # Allow cross domains
 CORS_ORIGIN_ALLOW_ALL = True
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,19 +52,29 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # Third-Party apps
     'rest_framework',
     'rest_framework.authtoken',  # <-- Here
+    'rest_auth',
+    'rest_auth.registration',
+    'allauth',
+    'allauth.account',
+
     'corsheaders',
 
     # Number cruncher apps
     'users',
 ]
 
+SITE_ID = 1
+
+
 AUTH_USER_MODEL = 'users.CustomUser' # new
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',    
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -163,11 +172,21 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REUQIRED = False
+
+
 # # # Configure database for Heroku.
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None) 
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode', None) 

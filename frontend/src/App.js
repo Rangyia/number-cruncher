@@ -1,15 +1,18 @@
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import "./App.css";
+import { BaseRouter } from "./routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
-function App() {
-  return (
-    <div className="App">
-      <h1>NUMBER CRUNCHER</h1>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Router>
+            <BaseRouter />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
