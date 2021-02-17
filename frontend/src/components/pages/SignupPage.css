@@ -1,0 +1,56 @@
+/* ------------------------------------ Desktop --------------------------------- */
+@media (min-width: 1000px) {
+    .wrapper {
+        /* Styles */
+        background-color:  rgba(28, 26, 34);
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+
+        /* Flexbox */
+        display: flex;
+        align-items: stretch;
+    }
+
+    /* Left column */
+    .col-1 {
+        background-image: url('../../img/bg-login-green-curves-01.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+        width: 50%;
+    }
+
+    /* Left column */
+    .col-1 {
+        margin: 0;
+        padding-top: 50px;
+
+        /* Flexbox */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .col-1 > .row > img {
+        width: 500px;
+    }
+
+    /* Right column */
+    .col-2 {
+        background-image: url('../../img/bg-login-turqouise-calc.png');
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 500px;
+        color: black;
+        background-color: white;
+        width: 50%;
+    }
+}
+
+/* ------------------------------------ Tablet --------------------------------- */
+
+
+/* ------------------------------------ Mobile --------------------------------- */

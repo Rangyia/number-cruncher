@@ -2,14 +2,9 @@ import React from 'react';
 
 // CSS
 import '../../App.css'
-import './LoginPage.css';
+import './SignupPage.css';
 import {
-    Button,
-    Form,
-    Grid,
-    Header,
-    Message,
-    Segment,
+    Button
 } from "semantic-ui-react";
 
 // Img

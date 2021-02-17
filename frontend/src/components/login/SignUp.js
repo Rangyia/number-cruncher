@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import { authSignup } from "../../store/actions/auth";
 import { Link } from "react-router-dom";
-import './SignupForm.css'
+import './SignupForm.css';
 
 class Signup extends Component {
     state = {
