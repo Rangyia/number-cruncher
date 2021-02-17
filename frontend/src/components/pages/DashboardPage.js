@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import "../App.css";
+import "../../App.css";
 import {
     Container,
-    Divider,
-    Grid,
-    Header,
-    List,
     Menu,
-    Segment,
 } from "semantic-ui-react";
 import { connect } from "react-redux";
-import * as actionTypes from "../store/actions/auth";
+import * as actionTypes from "../../store/actions/auth";
 import { Link } from "react-router-dom";
 
-class Layout extends Component {
+class DashboardPage extends Component {
     componentDidMount() {
         this.props.onTryAutoSignin();
     }
@@ -31,12 +26,12 @@ class Layout extends Component {
                         </Link>
                         <Menu.Menu position="right">
                             {this.props.authenticated ? (
-                                <Menu.Item onClick={() => this.props.logout()}>
+                                <Menu.Item onClick={() => this.props.logout().then(window.location.replace("/"))}>
                                     Logout
                                 </Menu.Item>
                             ) : (
                                     <React.Fragment>
-                                        <Link to="/login">
+                                        <Link to="/">
                                             <Menu.Item>Login</Menu.Item>
                                         </Link>
                                         <Link to="/signup">
@@ -66,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

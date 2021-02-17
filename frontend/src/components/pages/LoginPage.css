@@ -12,17 +12,12 @@
         align-items: stretch;
     }
 
+    /* Left column */
     .col-1 {
-        background-image: url('../../img/bg-img-login-color-01.jpg');
+        background-image: url('../../img/bg-login-green-curves-01.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center bottom;
-        width: 50%;
-    }
-
-    .col-2 {
-        color: black;
-        background-color: white;
         width: 50%;
     }
 
@@ -35,11 +30,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-    }
-
-    .col-1 > .row {
-        padding-left: 150px;
+        align-items: center;
     }
 
     .col-1 > .row > img {
@@ -47,6 +38,16 @@
     }
 
     /* Right column */
+    .col-2 {
+        background-image: url('../../img/bg-login-turqouise-calc.png');
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 500px;
+        color: black;
+        background-color: white;
+        width: 50%;
+    }
 }
 
 /* ------------------------------------ Tablet --------------------------------- */

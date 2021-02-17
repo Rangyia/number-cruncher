@@ -16,16 +16,16 @@ import {
 import banner from '../../img/img-site-ban.png'
 
 // Components
-import Login from '../login/Login'
+import Signup from '../login/Signup'
 
-function LoginPage() {
+function SignupPage() {
     return (
         <div className="wrapper">
 
             {/* Left Column */}
             <div className="col col-1 left">
                 <div className="row row-1">
-                    <img src={banner} alt="site-banner"/>
+                    <img src={banner} alt="site-banner" />
                 </div>
                 <div className="row row-2">
                     <Button color="black" fluid size="large" padding="10px 10px">
@@ -37,10 +37,10 @@ function LoginPage() {
 
             {/* Right Column */}
             <div className="col col-2 right">
-                <Login />
+                <Signup />
             </div>
         </div>
     )
 }
 
-export default LoginPage;
+export default SignupPage;

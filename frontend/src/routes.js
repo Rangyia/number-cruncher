@@ -1,17 +1,19 @@
 
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./components/Layout";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+
+// Pages
+import LoginPage from "./components/pages/LoginPage"
+import SignupPage from "./components/pages/SignupPage"
+import DashboardPage from "./components/pages/DashboardPage"
 
 export const BaseRouter = () => {
     return (
         <div>
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/" component={LoginPage} />
+                <Route exact path="/signup" component={SignupPage} />
+                <Route exact path="/dashboard" component={DashboardPage} />
             </Switch>
         </div>
     );
