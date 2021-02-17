@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 // Pages
 import LoginPage from "./components/pages/LoginPage"
-import SignupPage from "./components/pages/SignupPage"
+import SignupPage from "./components/signup/SignupPage"
 import DashboardPage from "./components/pages/DashboardPage"
 
 export const BaseRouter = () => {

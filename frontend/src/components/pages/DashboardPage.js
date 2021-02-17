@@ -16,6 +16,15 @@ class DashboardPage extends Component {
     render() {
         return (
             <div>
+                {/* Sidebar */}
+                <div className="ui sidebar vertical left menu overlay visible" style={{ overflow:"visible !important"}}>
+                    <div className="item logo">
+                        <img></img>
+                    </div>
+
+                </div>
+
+
                 <Menu inverted>
                     <Container>
                         <Link to="/">
