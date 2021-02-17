@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/auth";
 import { Link } from "react-router-dom";
 
+// Images
+
 class DashboardPage extends Component {
     componentDidMount() {
         this.props.onTryAutoSignin();
@@ -19,7 +21,7 @@ class DashboardPage extends Component {
                 {/* Sidebar */}
                 <div className="ui sidebar vertical left menu overlay visible" style={{ overflow:"visible !important"}}>
                     <div className="item logo">
-                        <img></img>
+
                     </div>
 
                 </div>
