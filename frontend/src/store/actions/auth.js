@@ -1,7 +1,16 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+require("dotenv").config();
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+const SERVER_URI = () => {
+  if (process.env.NODE_ENV === "production") {
+    return "https://ksu-number-cruncher.herokuapp.com"
+  } else {
+    return "http://localhost:8000"
+  }
+};
 
 export const authStart = () => {
   return {
@@ -43,7 +52,7 @@ export const authLogin = (username, password) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-        .post("http://localhost:8000/rest-auth/login/", {
+      .post(`${SERVER_URI()}/rest-auth/login/`, {
         username: username,
         password: password,
       })
@@ -67,7 +76,7 @@ export const authSignup = (username, email, password1, password2) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://localhost:8000/rest-auth/registration/", {
+      .post(`${SERVER_URI()}/rest-auth/registration/`, {
         username: username,
         email: email,
         password1: password1,
