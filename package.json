@@ -7,6 +7,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
+        "start": "cd frontend && npm start",
         "heroku-prebuild": "NODE_ENV=production cd frontend/ && yarn install && yarn build && cd .."
     },
     "cacheDirectories": [

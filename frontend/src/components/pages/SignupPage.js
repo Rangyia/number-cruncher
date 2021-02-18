@@ -11,7 +11,7 @@ import {
 import banner from '../../img/img-site-ban.png'
 
 // Components
-import Signup from '../login/Signup'
+import SignupForm from '../signup/SignupForm'
 
 function SignupPage() {
     return (
@@ -32,7 +32,7 @@ function SignupPage() {
 
             {/* Right Column */}
             <div className="col col-2 right">
-                <Signup />
+                <SignupForm />
             </div>
         </div>
     )
