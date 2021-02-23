@@ -6,6 +6,10 @@
     "author": "KSU",
     "license": "MIT",
     "private": true,
+    "engines": {
+        "node": "15.6.0",
+        "npm": "7.4.0"
+    },
     "scripts": {
         "start": "cd frontend && npm start",
         "heroku-prebuild": "NODE_ENV=production cd frontend/ && yarn install && yarn build && cd .."
