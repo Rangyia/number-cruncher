@@ -1,12 +1,15 @@
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
+    # DJANGO ADMIN URL
     path('admin/', admin.site.urls),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
 
+    # REST_FRAMEWORK URLS
+    path('api/account/', include('account.api.urls')),
+
+    # FRONTEND URL
     re_path(r'^', views.FrontendAppView.as_view())
 ]

@@ -1,16 +1,25 @@
-import React, { Component } from "react";
-import "../../App.css";
+// React
+import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+
+// Redux
+import { connect } from 'react-redux'
+import * as actionTypes from "../../store/actions/auth";
+
+// Components
 import {
     Container,
     Menu,
+    Image
 } from "semantic-ui-react";
-import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions/auth";
-import { Link } from "react-router-dom";
+
+// Styles
+import './TopBar.css'
 
 // Images
+import logo from '../../assets/images/site-logo-topbar.png'
 
-class DashboardPage extends Component {
+export class TopBar extends Component {
     componentDidMount() {
         this.props.onTryAutoSignin();
     }
@@ -18,19 +27,12 @@ class DashboardPage extends Component {
     render() {
         return (
             <div>
-                {/* Sidebar */}
-                <div className="ui sidebar vertical left menu overlay visible" style={{ overflow:"visible !important"}}>
-                    <div className="item logo">
-
-                    </div>
-
-                </div>
-
-
-                <Menu inverted>
-                    <Container>
+                <Menu inverted className="top-bar" fixed="top">
+                    <Container className="nav-container">
                         <Link to="/">
-                            <Menu.Item header>Number Cruncher</Menu.Item>
+                            <Menu.Item header>
+                                <Image src={logo} size='tiny'/>
+                            </Menu.Item>
                         </Link>
                         <Link to="/">
                             <Menu.Item>Home</Menu.Item>
@@ -53,12 +55,11 @@ class DashboardPage extends Component {
                         </Menu.Menu>
                     </Container>
                 </Menu>
-
-                {this.props.children}
             </div>
-        );
+        )
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         authenticated: state.token !== null,
@@ -72,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar)

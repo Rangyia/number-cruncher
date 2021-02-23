@@ -119,3 +119,14 @@ export const authCheckState = () => {
     }
   };
 };
+
+export const authCheckAccess = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (token === undefined) {
+      
+    } else {
+
+    }
+  }
+}

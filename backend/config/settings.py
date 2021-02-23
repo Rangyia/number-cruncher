@@ -26,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent # backend
 REACT_APP_DIR = os.path.join(ROOT_DIR, 'frontend') # frontend
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps')) # backend/apps
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -45,6 +44,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    # My apps
+    'account',
+
     # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,22 +58,19 @@ INSTALLED_APPS = [
 
     # Third-Party apps
     'rest_framework',
-    'rest_framework.authtoken',  # <-- Here
-    'rest_auth',
-    'rest_auth.registration',
-    'allauth',
-    'allauth.account',
-
+    'rest_framework.authtoken',
     'corsheaders',
-
-    # Number cruncher apps
-    'users',
 ]
 
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'account.Account' # new
 
-AUTH_USER_MODEL = 'users.CustomUser' # new
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -79,18 +78,17 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.api.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,27 +158,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, 'build', 'static'),
 ]
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-}
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_EMAIL_REUQIRED = False
-
 
 # # Configure database for Heroku.
 if 'HEROKU' in os.environ: 
