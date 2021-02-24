@@ -1,10 +1,25 @@
   
 from rest_framework import status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import RegistrationSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+
+class Registration(APIView):
+    def post(self, request):
+        serializer = RegistrationSerializer(data = request.data)
+        print(serializer)
+        data = {}
+        if serializer.is_valid():
+            account = serializer.save()
+            data['response'] = 'successfully registered new user.'
+            data['email'] = account.email
+            data['username'] = account.username
+        else:
+            data = serializer.errors
+        return Response(data)
 
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -21,18 +36,3 @@ class CustomObtainAuthToken(ObtainAuthToken):
             'is_manager': user.is_admin,
             'is_staff': user.is_staff
         })
-
-@api_view(['POST',])
-def registration_view(request):
-
-	if request.method == 'POST':
-		serializer = RegistrationSerializer(data=request.data)
-		data = {}
-		if serializer.is_valid():
-			account = serializer.save()
-			data['response'] = 'successfully registered new user.'
-			data['email'] = account.email
-			data['username'] = account.username
-		else:
-			data = serializer.errors
-		return Response(data)

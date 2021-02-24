@@ -79,7 +79,7 @@ export const authSignup = (username, email, password1, password2) => {
       .post(`${SERVER_URI()}/api/account/register/`, {
         username: username,
         email: email,
-        password1: password1,
+        password: password1,
         password2: password2,
       })
       .then((res) => {
