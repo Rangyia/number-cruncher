@@ -52,7 +52,7 @@ export const authLogin = (username, password) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post(`${SERVER_URI()}/rest-auth/login/`, {
+      .post(`${SERVER_URI()}/api/account/login/`, {
         username: username,
         password: password,
       })
@@ -76,7 +76,7 @@ export const authSignup = (username, email, password1, password2) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post(`${SERVER_URI()}/rest-auth/registration/`, {
+      .post(`${SERVER_URI()}/api/account/register/`, {
         username: username,
         email: email,
         password1: password1,
