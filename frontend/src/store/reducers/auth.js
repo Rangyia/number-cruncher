@@ -18,6 +18,7 @@ export const authSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         token: action.token,
+        is_admin: action.is_admin,
         error: null,
     });
 };
@@ -32,6 +33,7 @@ export const authFail = (state, action) => {
 export const authLogout = (state, action) => {
     return updateObject(state, {
         token: null,
+        is_admin: false,
     });
 };
 

@@ -18,10 +18,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token) => {
+export const authSuccess = (token, is_admin = false) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token,
+    is_admin: is_admin,    
   };
 };
 
@@ -34,6 +35,7 @@ export const authFail = (error) => {
 
 export const authLogout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("is_admin");
   localStorage.removeItem("expirationDate");
   return {
     type: actionTypes.AUTH_LOGOUT,
@@ -57,11 +59,15 @@ export const authLogin = (username, password) => {
         password: password,
       })
       .then((res) => {
-        const token = res.data.key;
+        const token = res.data.token;
+        const is_admin = res.data.is_admin;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
         localStorage.setItem("token", token);
+        localStorage.setItem("is_admin", is_admin);
         localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
+
+        dispatch(authSuccess(token, is_admin));
+
         window.location.replace("/dashboard");
         dispatch(checkAuthTimeout(3600));
       })
@@ -84,8 +90,10 @@ export const authSignup = (username, email, password1, password2) => {
       })
       .then((res) => {
         const token = res.data.key;
+        const is_admin = res.data.is_admin;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
         localStorage.setItem("token", token);
+        localStorage.setItem("is_admin", is_admin);
         localStorage.setItem("expirationDate", expirationDate);
         dispatch(authSuccess(token));
         window.location.replace("/dashboard");
@@ -101,6 +109,7 @@ export const authSignup = (username, email, password1, password2) => {
 export const authCheckState = () => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
+    const is_admin = localStorage.getItem("is_admin");
     if (token === undefined) {
       dispatch(authLogout());
       window.location.replace("/login");
@@ -109,7 +118,7 @@ export const authCheckState = () => {
       if (expirationDate <= new Date()) {
         dispatch(authLogout());
       } else {
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(token, is_admin));
         dispatch(
           checkAuthTimeout(
             (expirationDate.getTime() - new Date().getTime()) / 1000
@@ -119,14 +128,3 @@ export const authCheckState = () => {
     }
   };
 };
-
-export const authCheckAccess = () => {
-  return (dispatch) => {
-    const token = localStorage.getItem("token");
-    if (token === undefined) {
-      
-    } else {
-
-    }
-  }
-}

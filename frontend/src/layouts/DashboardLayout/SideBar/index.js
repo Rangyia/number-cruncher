@@ -13,7 +13,7 @@ import SideBarItem from './SideBarItem';
 // Styles
 import './SideBar.css';
 
-const items = [
+const admin_items = [
     {
         href: '/apps/Administration',
         icon: 'user circle outline',
@@ -31,6 +31,19 @@ const items = [
     },
 ];
 
+const staff_items = [
+    {
+        href: '/apps/Accounts',
+        icon: 'users',
+        label: 'Accounts'
+    },
+    {
+        href: '/apps/Logs',
+        icon: 'clipboard list',
+        label: 'Logs'
+    },
+]
+
 export class SideBar extends Component {
     componentDidMount() {
         this.props.onTryAutoSignin();
@@ -40,13 +53,21 @@ export class SideBar extends Component {
         return (
             <div>
                 <Menu borderless vertical stackable fixed='left' className='side-nav'>
-                    {items.map((item) => (
-                        <SideBarItem 
-                            label={item.label}
-                            icon={item.icon}
-                            href={item.href}
-                        />
-                    ))}
+                    {admin_items.map((item) => {
+                            if(this.props.is_admin == 'true' && item.label == 'Administration') {
+                                return <SideBarItem
+                                    label={item.label}
+                                    icon={item.icon}
+                                    href={item.href}
+                                />
+                            } else if (item.label != 'Administration')
+                                return <SideBarItem
+                                    label={item.label}
+                                    icon={item.icon}
+                                    href={item.href}
+                                />
+                        }
+                    )}
                 </Menu>
             </div>
         )
@@ -56,6 +77,8 @@ export class SideBar extends Component {
 const mapStateToProps = (state) => {
     return {
         authenticated: state.token !== null,
+        token: state.token,
+        is_admin: state.is_admin,
     };
 };
 
