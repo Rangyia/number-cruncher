@@ -32,5 +32,15 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'username', 
             'email',
+            'first_name',
+            'last_name',
             'address',
+            'avatar',
+            'is_active',
+            'is_staff',
+            'is_admin',
+            'is_superuser',
+            'date_of_birth',
+            'suspended_start_date',
+            'suspended_end_date'
         ]

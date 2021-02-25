@@ -11,7 +11,7 @@ import {
     Label,
 } from "reactstrap";
 
-export default class UserModal extends Component {
+export default class NewUserModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,7 +64,7 @@ export default class UserModal extends Component {
                         <FormGroup>
                             <Label for="user-password">Password</Label>
                             <Input
-                                type="text"
+                                type="password"
                                 id="user-password"
                                 name="password"
                                 value={this.state.activeItem.password}
@@ -73,17 +73,17 @@ export default class UserModal extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="user-password">Password</Label>
+                            <Label for="user-password2">Password</Label>
                             <Input
-                                type="text"
+                                type="password"
                                 id="user-password2"
-                                name="password2 "
+                                name="password2"
                                 value={this.state.activeItem.password2}
                                 onChange={this.handleChange}
                                 placeholder="Confirm Password"
                             />
                         </FormGroup>
-                        {/* <FormGroup>
+                        <FormGroup>
                             <Label for="user-address">Address</Label>
                             <Input
                                 type="text"
@@ -93,18 +93,40 @@ export default class UserModal extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Enter Address"
                             />
-                        </FormGroup> */}
-                        {/* <FormGroup check>
+                        </FormGroup>
+                        <FormGroup check>
                             <Label check>
                                 <Input
                                     type="checkbox"
                                     name="completed"
-                                    checked={this.state.activeItem.completed}
+                                    checked={this.state.activeItem.is_staff}
                                     onChange={this.handleChange}
                                 />
-                Completed
-              </Label>
-                        </FormGroup> */}
+                                Staff
+                            </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input
+                                    type="checkbox"
+                                    name="completed"
+                                    checked={this.state.activeItem.is_admin}
+                                    onChange={this.handleChange}
+                                />
+                                Manager
+                            </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input
+                                    type="checkbox"
+                                    name="completed"
+                                    checked={this.state.activeItem.is_superuser}
+                                    onChange={this.handleChange}
+                                />
+                                Admin
+                            </Label>
+                        </FormGroup>
                     </Form>
                 </ModalBody>
                 <ModalFooter>

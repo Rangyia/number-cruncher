@@ -1,34 +1,7 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import UserModal from "./UserModal";
+import NewUserModal from "./NewUserModal";
 import API from '../api'
-
-const userItems = [
-    {
-        id: 1,
-        title: "Go to Market",
-        description: "Buy ingredients to prepare dinner",
-        deleted: true,
-    },
-    {
-        id: 2,
-        title: "Study",
-        description: "Read Algebra and History textbook for the upcoming test",
-        deleted: false,
-    },
-    {
-        id: 3,
-        title: "Sammy's books",
-        description: "Go to library to return Sammy's books",
-        deleted: true,
-    },
-    {
-        id: 4,
-        title: "Article",
-        description: "Write article on how to use Django with React",
-        deleted: false,
-    },
-];
 
 class UserList extends Component {
     constructor(props) {
@@ -36,6 +9,7 @@ class UserList extends Component {
         this.state = {
             viewDeleted: false,
             userList: [],
+            editModal: false,
             modal: false,
             activeItem: {
                 title: "",
@@ -75,13 +49,27 @@ class UserList extends Component {
     };
 
     handleDelete = (item) => {
+
+        if (item.is_active != false) {
+            item.is_active = false;
+            API
+                .put(`/api/account/admin/users/${item.id}/`, item)
+                .then((res) => this.refreshList());
+            return;
+        }
+
         API
             .delete(`/api/account/admin/users/${item.id}/`, item)
             .then((res) => this.refreshList());
     };
 
     createItem = () => {
-        const item = { username: "", email: "", password: "", password2: "" };
+        const item = { 
+            username: "", 
+            email: "", 
+            password: "", 
+            password2: "",
+        };
         this.setState({ activeItem: item, modal: !this.state.modal });
     };
 
@@ -119,23 +107,23 @@ class UserList extends Component {
     renderItems = () => {
         const { viewDeleted } = this.state;
         const newItems = this.state.userList.filter(
-            (item) => item.deleted == viewDeleted
+            (item) => item.is_active != viewDeleted
         );
 
-        return this.state.userList.map((item) => (
+        return newItems.map((item) => (
             <li
                 key={item.id}
                 className="list-group-item d-flex justify-content-between align-items-center"
             >
                 <span
-                    className={`user-title mr-2 ${this.state.viewDeleted ? "completed-todo" : ""
+                    className={`user-title mr-2 ${this.state.viewDeleted ? "deleted-user" : ""
                         }`}
                     title={item.username}
                 >
                     {item.username}
                 </span>
                 <span
-                    className={`user-title mr-2 ${this.state.viewDeleted ? "completed-todo" : ""
+                    className={`user-title mr-2 ${this.state.viewDeleted ? "deleted-user" : ""
                         }`}
                     title={item.username}
                 >
@@ -182,7 +170,7 @@ class UserList extends Component {
                     </div>
                 </div>
                 {this.state.modal ? (
-                    <UserModal
+                    <NewUserModal
                         activeItem={this.state.activeItem}
                         toggle={this.toggle}
                         onSave={this.handleSubmit}

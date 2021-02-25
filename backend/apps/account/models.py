@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 from rest_framework.authtoken.models import Token
 
 class MyAccountManager(BaseUserManager):
@@ -35,21 +36,21 @@ class MyAccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
     # Account
-    email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-    username = models.CharField(verbose_name="username", max_length=30, unique=True)
+    email = models.EmailField(verbose_name="email", max_length=60, unique=True, null=True)
+    username = models.CharField(verbose_name="username", max_length=30, unique=True, null=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
     # Suspension Dates
-    suspended_start_date = models.DateTimeField('suspend start date', auto_now_add=True)
-    suspended_end_date = models.DateTimeField('suspend end date', auto_now_add=True)
+    suspended_start_date = models.DateTimeField('suspend start date', default=datetime.now)
+    suspended_end_date = models.DateTimeField('suspend end date', default=datetime.now)
 
     # Details
-    first_name = models.CharField('first name', max_length=50)
-    last_name = models.CharField('last name', max_length=50)
-    date_of_birth = models.DateField('date of birth', auto_now_add=True)
-    address = models.CharField('address', max_length=255)
-    avatar = models.CharField('avatar', max_length=255)
+    first_name = models.CharField('first name', max_length=50, null=True)
+    last_name = models.CharField('last name', max_length=50, null=True)
+    date_of_birth = models.DateField('date of birth', default=datetime.now)
+    address = models.CharField('address', max_length=255, null=True)
+    avatar = models.CharField('avatar', max_length=255, null=True)
 
     # Permissions
     is_active = models.BooleanField(default=True)
