@@ -65,9 +65,7 @@ export const authLogin = (username, password) => {
         localStorage.setItem("token", token);
         localStorage.setItem("is_admin", is_admin);
         localStorage.setItem("expirationDate", expirationDate);
-
         dispatch(authSuccess(token, is_admin));
-
         window.location.replace("/dashboard");
         dispatch(checkAuthTimeout(3600));
       })

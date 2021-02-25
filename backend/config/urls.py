@@ -11,5 +11,5 @@ urlpatterns = [
     path('api/account/', include('account.api.urls')),
 
     # FRONTEND URL
-    re_path(r'^', views.FrontendAppView.as_view())
+    # re_path(r'^', views.FrontendAppView.as_view())
 ]

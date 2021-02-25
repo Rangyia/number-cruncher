@@ -24,3 +24,17 @@ class RegistrationSerializer(serializers.ModelSerializer):
         account.set_password(password)
         account.save()
         return account
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = [
+            'id',
+            'username', 
+            'email',
+            'first_name',
+            'last_name',
+            'is_staff',
+            'is_admin',
+            'is_superuser'
+        ]

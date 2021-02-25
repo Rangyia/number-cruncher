@@ -1,11 +1,21 @@
   
 from rest_framework import status
+from django.views.generic import ListView
+from rest_framework import viewsets, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, UserSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import get_user_model
+from django.core import serializers
+from ..models import Account
+
+class UserList(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = Account.objects.all()
+
 
 class Registration(APIView):
     def post(self, request):

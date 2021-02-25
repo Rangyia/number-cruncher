@@ -8,11 +8,10 @@ import {
     Segment,
 } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { authSignup } from "../../store/actions/auth";
+import { authSignup } from "../store/actions/auth";
 import { Link } from "react-router-dom";
-import './SignupForm.css';
 
-class Signup extends Component {
+class SignUpForm extends Component {
     state = {
         username: "",
         email: "",
@@ -36,6 +35,7 @@ class Signup extends Component {
         const { loading, error } = this.props;
         const { username, email, password1, password2 } = this.state;
         return (
+            <>
             <Grid
                 textAlign="center"
                 style={{ height: "100vh" }}
@@ -108,6 +108,8 @@ class Signup extends Component {
                     </Message>
                 </Grid.Column>
             </Grid>
+            <h1>hello</h1>
+            </>
         );
     }
 }
@@ -125,4 +127,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

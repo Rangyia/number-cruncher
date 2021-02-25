@@ -3,17 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { authLogin } from "../../store/actions/auth";
 
-// Images
-import banner from '../../assets/images/img-site-ban.png'
+import {Button} from "semantic-ui-react";
+import banner from '../../assets/img/img-site-ban.png'
+import SignInForm from '../../components/SignInForm'
+import '../../css/pages/SignIn.css'
 
-// Components
-import {
-    Button,
-} from "semantic-ui-react";
-import LoginView from './LoginView'
-import SignUpView from './SignUpView'
-
-class MainLayout extends Component {
+class SignIn extends Component {
     state = {
         token: "",
     };
@@ -37,7 +32,7 @@ class MainLayout extends Component {
 
                 {/* Right Column */}
                 <div className="col col-2 right">
-                    <LoginView />
+                    <SignInForm />
                 </div>
             </div>
         );
@@ -56,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

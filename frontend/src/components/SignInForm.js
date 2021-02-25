@@ -8,16 +8,14 @@ import {
     Segment,
 } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { authSignup } from "../../../store/actions/auth";
+import { authLogin } from "../store/actions/auth";
 import { Link } from "react-router-dom";
-import './SignUpView.css';
+import '../css/pages/SignIn.css'
 
-class SignUpView extends Component {
+class SignInForm extends Component {
     state = {
         username: "",
-        email: "",
-        password1: "",
-        password2: "",
+        password: "",
     };
 
     handleChange = (e) => {
@@ -26,24 +24,25 @@ class SignUpView extends Component {
         });
     };
 
-    handleSubmit = () => {
-        const { username, email, password1, password2 } = this.state;
-        this.props.signup(username, email, password1, password2);
-        this.setState({ username: "", email: "", password1: "", password2: "" });
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { username, password } = this.state;
+        this.props.login(username, password);
+        this.setState({ username: "", password: "" });
     };
 
     render() {
         const { loading, error } = this.props;
-        const { username, email, password1, password2 } = this.state;
+        const { username, password } = this.state;
         return (
             <Grid
                 textAlign="center"
                 style={{ height: "100vh" }}
                 verticalAlign="middle"
             >
-                <Grid.Column className="signup-form" style={{ maxWidth: 450 }}>
+                <Grid.Column className="login-form" style={{ maxWidth: 450 }}>
                     <Header as="h2" color="teal" textAlign="center">
-                        Create an account
+                        Log-in to your account
           </Header>
                     <Form size="large" onSubmit={this.handleSubmit} error={error}>
                         <Segment stacked>
@@ -58,38 +57,19 @@ class SignUpView extends Component {
                             />
                             <Form.Input
                                 fluid
-                                name="email"
-                                value={email}
-                                onChange={this.handleChange}
-                                icon="mail"
-                                iconPosition="left"
-                                placeholder="Email address"
-                            />
-                            <Form.Input
-                                fluid
-                                name="password1"
-                                value={password1}
+                                name="password"
+                                value={password}
                                 onChange={this.handleChange}
                                 icon="lock"
                                 iconPosition="left"
                                 placeholder="Password"
                                 type="password"
                             />
-                            <Form.Input
-                                fluid
-                                name="password2"
-                                value={password2}
-                                onChange={this.handleChange}
-                                icon="lock"
-                                iconPosition="left"
-                                placeholder="Confirm password"
-                                type="password"
-                            />
                             {error && (
                                 <Message
                                     error
-                                    header="There was an error"
-                                    content="Please check your credentials"
+                                    header="Unable to Login"
+                                    content="Please check your username and password"
                                 />
                             )}
                             <Button
@@ -99,12 +79,12 @@ class SignUpView extends Component {
                                 fluid
                                 size="large"
                             >
-                                SignUp
+                                Login
               </Button>
                         </Segment>
                     </Form>
                     <Message>
-                        Already have an account? <Link to="/"> Login</Link>
+                        New to us? <Link to="/signup"> Sign Up</Link>
                     </Message>
                 </Grid.Column>
             </Grid>
@@ -113,6 +93,7 @@ class SignUpView extends Component {
 }
 const mapStateToProps = (state) => {
     return {
+        authenticated: state.token !== null,
         loading: state.loading,
         error: state.error,
     };
@@ -120,9 +101,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: (username, email, password1, password2) =>
-            dispatch(authSignup(username, email, password1, password2)),
+        login: (username, password) => dispatch(authLogin(username, password)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpView);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

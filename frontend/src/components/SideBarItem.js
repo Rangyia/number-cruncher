@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Icon, Menu } from "semantic-ui-react";
 
 // Styles
-import './SideBar.css';
+import '../css/components/SideBar.css';
 
 const SideBarItem = (props) => {
     const highlight = props.highlight ? 'hightlight-item' : null;
@@ -15,7 +15,7 @@ const SideBarItem = (props) => {
     return (
         <Link to={itemLink}>
             <Menu.Item className='sidebar-item'>
-                <div className='sidebar-item-alignment-container'>
+                <div className='sidebar-item-alignment-container' style={{color: "white"}}>
                     <span><Icon size='large' name={props.icon} /> </span>
                     <span>{props.label}</span>
                 </div>
