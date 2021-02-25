@@ -18,7 +18,7 @@ class SignIn extends Component {
             <div className="wrapper">
 
                 {/* Left Column */}
-                <div className="col col-1 left">
+                <div className="site-col site-col-1 left">
                     <div className="row row-1">
                         <img src={banner} alt="site-banner" />
                     </div>
@@ -31,7 +31,7 @@ class SignIn extends Component {
                 </div>
 
                 {/* Right Column */}
-                <div className="col col-2 right">
+                <div className="site-col site-col-2 right">
                     <SignInForm />
                 </div>
             </div>

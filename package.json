@@ -20,6 +20,8 @@
     "dependencies": {
         "@material-ui/core": "^4.11.3",
         "@material-ui/styles": "^4.11.3",
+        "bootstrap": "^4.6.0",
+        "reactstrap": "^8.9.0",
         "volt": "^0.2.0"
     }
 }
