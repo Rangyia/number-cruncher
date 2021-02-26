@@ -42,13 +42,13 @@ class Account(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
     # Suspension Dates
-    suspended_start_date = models.DateTimeField('suspend start date', default=datetime.now)
-    suspended_end_date = models.DateTimeField('suspend end date', default=datetime.now)
+    suspended_start_date = models.DateField('suspend start date', null=True)
+    suspended_end_date = models.DateField('suspend end date', null=True)
 
     # Details
     first_name = models.CharField('first name', max_length=50, null=True)
     last_name = models.CharField('last name', max_length=50, null=True)
-    date_of_birth = models.DateField('date of birth', default=datetime.now)
+    date_of_birth = models.DateField('date of birth', null=True)
     address = models.CharField('address', max_length=255, null=True)
     avatar = models.CharField('avatar', max_length=255, null=True)
 

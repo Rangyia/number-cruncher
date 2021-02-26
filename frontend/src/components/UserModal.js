@@ -11,7 +11,7 @@ import {
     Label,
 } from "reactstrap";
 
-export default class NewUserModal extends Component {
+export default class UserModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -83,6 +83,18 @@ export default class NewUserModal extends Component {
                                 placeholder="Confirm Password"
                             />
                         </FormGroup>
+                        <FormGroup datatype style={{ marginTop: 10 }}>
+                            <Label for="user-date_of_birth">Date of Birth</Label>
+                            <Input
+                                type="date"
+                                name="date"
+                                value={this.state.activeItem.date_of_birth}
+                                id="user-date_of_birth"
+                                name="date_of_birth"
+                                placeholder="date placeholder"
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
                         <FormGroup>
                             <Label for="user-address">Address</Label>
                             <Input
@@ -98,7 +110,7 @@ export default class NewUserModal extends Component {
                             <Label check>
                                 <Input
                                     type="checkbox"
-                                    name="completed"
+                                    name="is_staff"
                                     checked={this.state.activeItem.is_staff}
                                     onChange={this.handleChange}
                                 />
@@ -126,6 +138,18 @@ export default class NewUserModal extends Component {
                                 />
                                 Admin
                             </Label>
+                        </FormGroup>
+                        <FormGroup datatype style={{marginTop:10}}>
+                            <Label for="user-suspended_end_date">Suspend End Date</Label>
+                            <Input
+                                type="date"
+                                name="date"
+                                value={this.state.activeItem.suspended_end_date}
+                                id="user-suspended_end_date"
+                                name="suspended_end_date"
+                                placeholder="date placeholder"
+                                onChange={this.handleChange}
+                            />
                         </FormGroup>
                     </Form>
                 </ModalBody>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import NewUserModal from "./NewUserModal";
+import UserModal from "./UserModal";
 import API from '../api'
 
 class UserList extends Component {
@@ -49,17 +49,19 @@ class UserList extends Component {
     };
 
     handleDelete = (item) => {
-
-        if (item.is_active != false) {
+        if (item.is_active == true) {
             item.is_active = false;
             API
                 .put(`/api/account/admin/users/${item.id}/`, item)
                 .then((res) => this.refreshList());
-            return;
         }
+        return;
+    };
 
+    handleActivate = (item) => {
+        item.is_active = true;
         API
-            .delete(`/api/account/admin/users/${item.id}/`, item)
+            .put(`/api/account/admin/users/${item.id}/`, item)
             .then((res) => this.refreshList());
     };
 
@@ -89,25 +91,52 @@ class UserList extends Component {
         return (
             <div className="nav nav-tabs">
                 <span
-                    className={this.state.viewDeleted ? "nav-link active" : "nav-link"}
-                    onClick={() => this.displayCompleted(true)}
-                >
-                    Deleted
-        </span>
-                <span
                     className={this.state.viewDeleted ? "nav-link" : "nav-link active"}
                     onClick={() => this.displayCompleted(false)}
                 >
                     Active
         </span>
+                    <span
+                        className={this.state.viewDeleted ? "nav-link active" : "nav-link"}
+                        onClick={() => this.displayCompleted(true)}
+                    >
+                                Deactive
+                </span>
             </div>
         );
     };
 
     renderItems = () => {
         const { viewDeleted } = this.state;
+
+        const isSuspended = (item_suspended_date) => {
+            let date = new Date();
+            const curr_date_str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+            const suspended_date = new Date(item_suspended_date);
+            const curr_date = new Date(curr_date_str)
+
+            if (suspended_date.getTime() < curr_date.getTime()) {
+                return false;
+            }
+            return true;
+        }
+
         const newItems = this.state.userList.filter(
-            (item) => item.is_active != viewDeleted
+            (item) => {
+
+                // Activated
+                if (item.is_active != viewDeleted) {
+
+                    // If suspended and activated
+                    if (isSuspended(item.suspended_end_date)) {
+                        this.handleDelete(item)
+                    }
+                    return true;
+
+                } else if (item.is_active != viewDeleted) {
+                    return false;
+                }
+            }
         );
 
         return newItems.map((item) => (
@@ -129,19 +158,51 @@ class UserList extends Component {
                 >
                     {item.email}
                 </span>
+                <span
+                    className={`user-title mr-2 ${this.state.viewDeleted ? "deleted-user" : ""
+                        }`}
+                    title={item.first_name}
+                >
+                    {item.first_name}
+                </span>
+                <span
+                    className={`user-title mr-2 ${this.state.viewDeleted ? "deleted-user" : ""
+                        }`}
+                    title={item.last_name}
+                >
+                    {item.last_name}
+                </span>
+                <span
+                    className={`user-title mr-2 ${this.state.viewDeleted ? "deleted-user" : ""
+                        }`}
+                    title={item.address}
+                >
+                    {item.address}
+                </span>
                 <span>
                     <button
                         className="btn btn-secondary mr-2"
                         onClick={() => this.editItem(item)}
                     >
                         Edit
-          </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => this.handleDelete(item)}
-                    >
-                        Delete
-          </button>
+             </button>
+                    {
+                    !item.is_active ? 
+                        <button
+                            style={{backgroundColor: "green"}}
+                            className="btn btn-secondary mr-2"
+                                onClick={() => this.handleActivate(item)}
+                        >
+                            Activate
+                        </button>
+                        : 
+                            <button
+                                className="btn btn-danger"
+                                onClick={() => this.handleDelete(item)}
+                            >
+                                Deactivate
+                         </button>
+                    }
                 </span>
             </li>
         ));
@@ -170,7 +231,7 @@ class UserList extends Component {
                     </div>
                 </div>
                 {this.state.modal ? (
-                    <NewUserModal
+                    <UserModal
                         activeItem={this.state.activeItem}
                         toggle={this.toggle}
                         onSave={this.handleSubmit}
