@@ -8,6 +8,6 @@ export const Routes = {
 
     // apps
     Users: { path: "/apps/users" },
-    Accounts: { path: "/apps/users" },
+    ChartAccount: { path: "/apps/chartofaccounts" },
     Logs: { path: "/apps/users" },
 }

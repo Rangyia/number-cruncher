@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 
 // apps
 import Users from "./pages/admin/Users"
+import ChartAccount from "./pages/coa/ChartAccount"
 
 // components
 import Sidebar from "./components/Sidebar"
@@ -47,5 +48,6 @@ export default () => (
       {/* pages */}
       <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard}/>
       <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
+    <RouteWithSidebar exact path={Routes.ChartAccount.path} component={ChartAccount} />
     </Switch>
 );

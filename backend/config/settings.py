@@ -46,6 +46,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
     # My apps
     'account',
+    'coa',
 
     # Django Apps
     'django.contrib.admin',

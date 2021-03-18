@@ -51,6 +51,28 @@ export default class UserModal extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
+                            <Label for="user-firstname">First Name</Label>
+                            <Input
+                                type="text"
+                                id="user-firstname"
+                                name="first_name"
+                                value={this.state.activeItem.first_name}
+                                onChange={this.handleChange}
+                                placeholder="Enter First Name"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="user-lastname">Last Name</Label>
+                            <Input
+                                type="text"
+                                id="user-lastname"
+                                name="last_name"
+                                value={this.state.activeItem.last_name}
+                                onChange={this.handleChange}
+                                placeholder="Enter Last Name"
+                            />
+                        </FormGroup>
+                        <FormGroup>
                             <Label for="user-email">Email</Label>
                             <Input
                                 type="text"

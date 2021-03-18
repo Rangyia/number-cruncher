@@ -5,24 +5,29 @@ import { Link } from "react-router-dom";
 import {
     Container,
     Menu,
-    Image
+    Image,
+    Icon,
 } from "semantic-ui-react";
 import logo from '../assets/img/site-logo-topbar.png'
 import { connect } from 'react-redux'
 import * as actionTypes from "../store/actions/auth";
 import '../css/components/Navbar.css'
+import photo from "../assets/img/img-user-profile.png"
 
 export const Navbar = (props) => {
     useEffect(() => {
         props.onTryAutoSignin();
     })
-    
+
     return (
-        <Menu inverted className="nav-container" style={{ backgroundColor: "transparent"}}>
+        <Menu inverted className="nav-container" style={{ backgroundColor: "transparent", marginTop: 20}}>
             <Container className="nav-menu">
                 <Link to="/">
-                    <Menu.Item header style={{backgroundColor: "black"}}>
-                        <Image src={logo} size='tiny' />
+                    <Menu.Item header style={{backgroundColor: "black", borderRadius: 20}}>
+                        <div class="ui small image">
+                            <img src={photo} alt="profile pic" style={{width: 50}}/>
+                        </div>
+                        <h2>{localStorage.getItem("user").toUpperCase()}</h2>
                     </Menu.Item>
                 </Link>
                 <Menu.Menu position="right">

@@ -44,5 +44,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
             'email': user.email,
             'is_admin': user.is_superuser,
             'is_manager': user.is_admin,
-            'is_staff': user.is_staff
+            'is_staff': user.is_staff,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
         })

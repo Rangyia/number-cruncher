@@ -21,9 +21,9 @@ const admin_items = [
         label: 'Administration'
     },
     {
-        href: '/apps/accounts',
+        href: '/apps/chartofaccounts',
         icon: 'users',
-        label: 'Accounts'
+        label: 'Chart of Accounts'
     },
     {
         href: '/apps/logs',
@@ -34,9 +34,9 @@ const admin_items = [
 
 const staff_items = [
     {
-        href: '/apps/Accounts',
+        href: '/apps/chartofaccounts',
         icon: 'users',
-        label: 'Accounts'
+        label: 'Chart of Accounts'
     },
     {
         href: '/apps/Logs',
