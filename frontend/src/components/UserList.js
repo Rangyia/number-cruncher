@@ -39,7 +39,7 @@ class UserList extends Component {
 
         if (item.id) {
             API
-                .put(`/api/account/admin/users/${item.id}/`, item)
+                .put(`/api/account/admin/users/1/`, item)
                 .then((res) => this.refreshList());
             return;
         }

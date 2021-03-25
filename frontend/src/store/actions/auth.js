@@ -38,7 +38,8 @@ export const authLogout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("is_admin");
   localStorage.removeItem("expirationDate");
-  localStorage.removeItem("user");
+  localStorage.removeItem("username");
+  localStorage.removeItem("name");
   return {
     type: actionTypes.AUTH_LOGOUT,
   };
@@ -63,13 +64,16 @@ export const authLogin = (username, password) => {
       .then((res) => {
         const token = res.data.token;
         const is_admin = res.data.is_admin;
-        const user = res.data.first_name.substring(0, 1).toLowerCase() + res.data.last_name.substring(0, 1).toLowerCase();
+        const username = res.data.username;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+        const name = ((res.data.first_name != null && res.data.last_name != null) ? res.data.first_name + " " + res.data.last_name : "Anonymous");
+
         localStorage.setItem("token", token);
         localStorage.setItem("is_admin", is_admin);
         localStorage.setItem("expirationDate", expirationDate);
-        localStorage.setItem("user", user);
-        dispatch(authSuccess(token, is_admin, user));
+        localStorage.setItem("username", username);
+        localStorage.setItem("name", name);
+        dispatch(authSuccess(token, is_admin, username, name));
         window.location.replace("/dashboard");
         dispatch(checkAuthTimeout(3600));
       })

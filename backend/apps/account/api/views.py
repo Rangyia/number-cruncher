@@ -41,6 +41,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         
         return Response({
             'token': token.key,
+            'username': user.username,
             'user_id': user.pk,
             'email': user.email,
             'is_admin': user.is_superuser,

@@ -5,6 +5,8 @@
 body, * {
   margin: 0;
   padding: 0;
+  border-radius: 0 !important;
+  border: none !important;
 
   /* Fonts */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

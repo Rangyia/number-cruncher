@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component, useCallback } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Header, Icon, Image, Menu, Segment, Sidebar, SidebarPushable, SidebarPusher } from 'semantic-ui-react'
 import { Routes } from "./routes";
+import api from "./api"
 
 // CSS
 import './css/App.css'
@@ -20,6 +21,8 @@ import NavSidebar from "./components/Sidebar"
 import NavTopbar from "./components/Navbar"
 
 const RouteWithSidebar = ({ component: Component, ...rest}) => {
+
+  // side bar toggle state
   const [sideBarVisible, setSidebarVisible] = useState(true)
 
   const receiveChildValue = (value) => {

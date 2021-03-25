@@ -1,3 +1,22 @@
+.global-header-bar {
+    border: none !important;
+    border-radius: 0 !important;
+    background-color: red !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between;
+}
+
+.global-header-menu-left {
+    justify-self: start !important;
+    display: flex;
+}
+
+.global-header-menu-right {
+    justify-self: end !important;
+    display: flex;
+}
+
 .top-nav-icon {
-    font-size: 24px !important;
+    font-size: 18px !important;
 }

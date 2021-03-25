@@ -10,6 +10,7 @@ import * as actionTypes from "../store/actions/auth";
 import { Header, Icon, Image, Menu, Segment, Sidebar, SidebarPushable } from 'semantic-ui-react'
 // import { Header, Icon, Image, ItemDescription, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import SideBarItem from './SideBarItem';
+import '../css/components/SideBar.css';
 import logo from '../assets/img/site-logo-topbar.png'
 
 // Styles
@@ -62,9 +63,6 @@ export class SideBar extends Component {
                 vertical
                 visible={this.props.sideBarVisible}
                 >
-                    {
-                        console.log("made it" + this.props.sideBarVisible)
-                    }
               <Image src={logo} size='large' />
                 {admin_items.map((item) => {
                     if (this.props.is_admin == 'true' && item.label == 'Administration') {

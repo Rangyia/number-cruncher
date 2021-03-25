@@ -19,6 +19,8 @@ export const authSuccess = (state, action) => {
         loading: false,
         token: action.token,
         is_admin: action.is_admin,
+        name: action.name,
+        username: action.username,
         error: null,
     });
 };
