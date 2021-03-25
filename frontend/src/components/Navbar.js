@@ -16,11 +16,6 @@ import photo from "../assets/img/img-user-profile.png"
 
 export const Navbar = (props) => {
 
-    const changeSidebar = () => {
-        sidebarVisible = !props.sidebarVisible;
-        setSidebarVisible(sidebarVisible);
-    } 
-
     useEffect(() => {
         props.onTryAutoSignin();
     })
@@ -28,8 +23,8 @@ export const Navbar = (props) => {
     return (
         <Menu inverted className="site-top-nav" style={{ backgroundColor: "transparent", marginTop: 20}}>
             <Container className="nav-menu">
-                <Menu.Item as='a' onClick={changeSidebar}>
-                    <Icon name='align justify' />
+                <Menu.Item as='a'>
+                    <Icon name='align justify' onClick={() => props.fromChildToParentCallBack(!props.sideBarVisibility)} />
                 </Menu.Item>
                 <Link to="/">
                     <Menu.Item header style={{backgroundColor: "black", borderRadius: 20}}>

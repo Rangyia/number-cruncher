@@ -23,21 +23,23 @@ import { Grid } from 'semantic-ui-react';
 const RouteWithSidebar = ({ component: Component, ...rest}) => {
   const [sideBarVisible, setSidebarVisible] = useState(true)
 
+  const receiveChildValue = (value) => {
+    setSidebarVisible(value);
+  };
+
   const sidebarWrapper = useCallback(
     (visible) => {
       setSidebarVisible(visible);
     },
-    [sideBarVisible]
+    [setSidebarVisible]
   );
 
   return (
     <Route {...rest} render={props => (
         <Sidebar.Pushable as={Segment} className="site-container">
-          <NavSidebar visible={sideBarVisible}/>
+        <NavSidebar visible={sideBarVisible}/>
           <Sidebar.Pusher>
-            <Navbar 
-            sideBarVisible={sideBarVisible}
-            setSidebarVisible={sidebarWrapper} />
+          <Navbar fromChildToParentCallBack={receiveChildValue} sideBarVisibility={sideBarVisible} />
             <Component {...props}/>
           </Sidebar.Pusher>
       </Sidebar.Pushable>
@@ -55,6 +57,6 @@ export default () => (
       {/* pages */}
       <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard}/>
       <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
-    <RouteWithSidebar exact path={Routes.ChartAccount.path} component={ChartAccount} />
+      <RouteWithSidebar exact path={Routes.ChartAccount.path} component={ChartAccount} />
     </Switch>
 );
