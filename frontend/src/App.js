@@ -27,17 +27,10 @@ const RouteWithSidebar = ({ component: Component, ...rest}) => {
     setSidebarVisible(value);
   };
 
-  const sidebarWrapper = useCallback(
-    (visible) => {
-      setSidebarVisible(visible);
-    },
-    [setSidebarVisible]
-  );
-
   return (
     <Route {...rest} render={props => (
         <Sidebar.Pushable as={Segment} className="site-container">
-        <NavSidebar visible={sideBarVisible}/>
+        <NavSidebar sideBarVisible={sideBarVisible}/>
           <Sidebar.Pusher>
           <Navbar fromChildToParentCallBack={receiveChildValue} sideBarVisibility={sideBarVisible} />
             <Component {...props}/>

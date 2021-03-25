@@ -48,13 +48,6 @@ const staff_items = [
 
 export class SideBar extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            sideBarVisible: this.props.sideBarVisible
-        }
-    }
-
     componentDidMount() {
         this.props.onTryAutoSignin();
     }
@@ -70,12 +63,9 @@ export class SideBar extends Component {
                 visible={this.props.sideBarVisible}
                 >
                     {
-                        console.log(this.props.sideBarVisible)
+                        console.log("made it" + this.props.sideBarVisible)
                     }
               <Image src={logo} size='large' />
-                <Menu.Item as='a'>
-                    <Icon name='align justify' onClick={this.checkStatus} />
-                </Menu.Item>
                 {admin_items.map((item) => {
                     if (this.props.is_admin == 'true' && item.label == 'Administration') {
                         return <SideBarItem
