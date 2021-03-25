@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import * as actionTypes from "../store/actions/auth";
 
 // Components
-import { Header, Icon, Image, ItemDescription, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import { Header, Icon, Image, Menu, Segment, Sidebar, SidebarPushable } from 'semantic-ui-react'
+// import { Header, Icon, Image, ItemDescription, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import SideBarItem from './SideBarItem';
 import logo from '../assets/img/site-logo-topbar.png'
 
@@ -46,14 +47,29 @@ const staff_items = [
 ]
 
 export class SideBar extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            sideBarVisible: this.props.visible
+        }
+    }
+
     componentDidMount() {
         this.props.onTryAutoSignin();
     }
 
     render() {
         return (
-            <Menu vertical stackable className='side-nav' style={{ height: '100vh', backgroundColor: "#20232a"}}>
-                <Image src={logo} size='large' />
+            <Sidebar
+                className="site-nav"
+                animation="push"
+                as={Menu}
+                inverted
+                vertical
+                visible={this.state.sideBarVisible}
+                >
+              <Image src={logo} size='large' />
                 {admin_items.map((item) => {
                     if (this.props.is_admin == 'true' && item.label == 'Administration') {
                         return <SideBarItem
@@ -69,7 +85,7 @@ export class SideBar extends Component {
                         />
                 }
                 )}
-            </Menu>
+          </Sidebar>
         )
     }
 }

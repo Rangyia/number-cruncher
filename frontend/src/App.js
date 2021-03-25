@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect, Component, useCallback } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
+import { Header, Icon, Image, Menu, Segment, Sidebar, SidebarPushable, SidebarPusher } from 'semantic-ui-react'
 import { Routes } from "./routes";
 
 // CSS
@@ -15,25 +16,31 @@ import Users from "./pages/admin/Users"
 import ChartAccount from "./pages/coa/ChartAccount"
 
 // components
-import Sidebar from "./components/Sidebar"
+import NavSidebar from "./components/Sidebar"
 import Navbar from "./components/Navbar"
 import { Grid } from 'semantic-ui-react';
 
 const RouteWithSidebar = ({ component: Component, ...rest}) => {
+  const [sideBarVisible, setSidebarVisible] = useState(true)
+
+  const sidebarWrapper = useCallback(
+    (visible) => {
+      setSidebarVisible(visible);
+    },
+    [sideBarVisible]
+  );
 
   return (
     <Route {...rest} render={props => (
-      <div className="site-container">
-        <Grid className="site-wrapper" columns='equal'>
-          <Grid.Column className="site-sidebar" width={2}>
-            <Sidebar />
-          </Grid.Column>
-          <Grid.Column className="site-content">
-              <Navbar />
-              <Component {...props}/>
-          </Grid.Column>
-        </Grid>
-      </div>
+        <Sidebar.Pushable as={Segment} className="site-container">
+          <NavSidebar visible={sideBarVisible}/>
+          <Sidebar.Pusher>
+            <Navbar 
+            sideBarVisible={sideBarVisible}
+            setSidebarVisible={sidebarWrapper} />
+            <Component {...props}/>
+          </Sidebar.Pusher>
+      </Sidebar.Pushable>
     )}
     />
   );

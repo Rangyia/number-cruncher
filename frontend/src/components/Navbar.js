@@ -15,13 +15,22 @@ import '../css/components/Navbar.css'
 import photo from "../assets/img/img-user-profile.png"
 
 export const Navbar = (props) => {
+
+    const changeSidebar = () => {
+        sidebarVisible = !props.sidebarVisible;
+        setSidebarVisible(sidebarVisible);
+    } 
+
     useEffect(() => {
         props.onTryAutoSignin();
     })
 
     return (
-        <Menu inverted className="nav-container" style={{ backgroundColor: "transparent", marginTop: 20}}>
+        <Menu inverted className="site-top-nav" style={{ backgroundColor: "transparent", marginTop: 20}}>
             <Container className="nav-menu">
+                <Menu.Item as='a' onClick={changeSidebar}>
+                    <Icon name='align justify' />
+                </Menu.Item>
                 <Link to="/">
                     <Menu.Item header style={{backgroundColor: "black", borderRadius: 20}}>
                         <div class="ui small image">

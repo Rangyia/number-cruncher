@@ -161,9 +161,9 @@ STATICFILES_DIRS = [
 ]
 
 # # Configure database for Heroku.
-if 'HEROKU' in os.environ: 
-    DATABASES = {}
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-    django_heroku.settings(locals())
-    options = DATABASES['default'].get('OPTIONS', {})
-    options.pop('sslmode', None)
+# if 'HEROKU' in os.environ: 
+#     DATABASES = {}
+#     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+#     django_heroku.settings(locals())
+#     options = DATABASES['default'].get('OPTIONS', {})
+#     options.pop('sslmode', None)
