@@ -17,8 +17,7 @@ import ChartAccount from "./pages/coa/ChartAccount"
 
 // components
 import NavSidebar from "./components/Sidebar"
-import Navbar from "./components/Navbar"
-import { Grid } from 'semantic-ui-react';
+import NavTopbar from "./components/Navbar"
 
 const RouteWithSidebar = ({ component: Component, ...rest}) => {
   const [sideBarVisible, setSidebarVisible] = useState(true)
@@ -30,9 +29,9 @@ const RouteWithSidebar = ({ component: Component, ...rest}) => {
   return (
     <Route {...rest} render={props => (
         <Sidebar.Pushable as={Segment} className="site-container">
-        <NavSidebar sideBarVisible={sideBarVisible}/>
+          <NavSidebar sideBarVisible={sideBarVisible}/>
           <Sidebar.Pusher>
-          <Navbar fromChildToParentCallBack={receiveChildValue} sideBarVisibility={sideBarVisible} />
+          <NavTopbar fromChildToParentCallBack={receiveChildValue} sideBarVisibility={sideBarVisible} />
             <Component {...props}/>
           </Sidebar.Pusher>
       </Sidebar.Pushable>

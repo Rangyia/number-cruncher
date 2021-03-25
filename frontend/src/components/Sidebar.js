@@ -55,7 +55,7 @@ export class SideBar extends Component {
     render() {
         return (
             <Sidebar
-                className="site-nav"
+                className="nav-side-bar"
                 animation="push"
                 as={Menu}
                 inverted

@@ -7,6 +7,7 @@ import {
     Menu,
     Image,
     Icon,
+    MenuItem,
 } from "semantic-ui-react";
 import logo from '../assets/img/site-logo-topbar.png'
 import { connect } from 'react-redux'
@@ -14,20 +15,28 @@ import * as actionTypes from "../store/actions/auth";
 import '../css/components/Navbar.css'
 import photo from "../assets/img/img-user-profile.png"
 
-export const Navbar = (props) => {
+export const NavTopBar = (props) => {
+
+    const sideBarIsToggled = (visible) => {
+        return (
+            <Menu.Item as='a' onClick={() => props.fromChildToParentCallBack(!props.sideBarVisibility)}>
+                {
+                    (visible ? <Icon className='top-nav-icon' name='outdent'></Icon> : <Icon className='top-nav-icon' name='indent'></Icon>)
+                }
+            </Menu.Item>
+        );
+    }
 
     useEffect(() => {
         props.onTryAutoSignin();
     })
 
     return (
-        <Menu inverted className="site-top-nav" style={{ backgroundColor: "transparent", marginTop: 20}}>
+        <Menu inverted className="nav-top-bar" style={{ backgroundColor: "transparent", marginTop: 20}}>
             <Container className="nav-menu">
-                <Menu.Item as='a'>
-                    <Icon name='align justify' onClick={() => props.fromChildToParentCallBack(!props.sideBarVisibility)} />
-                </Menu.Item>
+                {sideBarIsToggled(props.sideBarVisibility)}
                 <Link to="/">
-                    <Menu.Item header style={{backgroundColor: "black", borderRadius: 20}}>
+                    <Menu.Item header>
                         <div class="ui small image">
                             <img src={photo} alt="profile pic" style={{width: 50}}/>
                         </div>
@@ -35,6 +44,9 @@ export const Navbar = (props) => {
                     </Menu.Item>
                 </Link>
                 <Menu.Menu position="right">
+                    <Menu.Item>
+                        <Icon />
+                    </Menu.Item>
                     {props.authenticated ? (
                         <Menu.Item style={{ color: "#4a5073"}} onClick={() => props.logout().then(window.location.replace("/"))}>
                             Logout
@@ -66,4 +78,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(NavTopBar)

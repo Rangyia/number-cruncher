@@ -2,35 +2,10 @@
 
 /* ------------------------------------ Desktop --------------------------------- */
 /* @media (min-width: 1000px) { */
-
   /* global container */
-  .site-container * {
-    margin: 0;
-    padding: 0;
-    border-radius: none;
-  }
-
-  /* global content */
   .site-container {
-    height: 100vh;
-    width: 100%;
     background-color: black !important;
     color: #4a5073;
-  }
-
-  .site-nav {
-    background-color: red !important;
-    border-radius: 0 !important;
-    border: none;
-  }
-
-  .site-view {
-    background-color: blue !important;
-    width: 100%;
-  }
-
-  .site-top-nav {
-    background-color: aquamarine !important;
   }
 /* } */
 
