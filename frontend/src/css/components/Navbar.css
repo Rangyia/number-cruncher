@@ -1,22 +1,25 @@
 .global-header-bar {
     border: none !important;
     border-radius: 0 !important;
-    background-color: red !important;
+    background-color: rgb(233, 233, 233) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between;
+    height: 48px;
 }
 
-.global-header-menu-left {
+.container-left {
     justify-self: start !important;
     display: flex;
 }
 
-.global-header-menu-right {
+.container-right {
     justify-self: end !important;
     display: flex;
+    margin-left: 30%;
 }
 
 .top-nav-icon {
+    color: #4a5073;
     font-size: 18px !important;
 }

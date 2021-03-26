@@ -47,7 +47,7 @@ const staff_items = [
     },
 ]
 
-export class SideBar extends Component {
+export class NavSideBar extends Component {
 
     componentDidMount() {
         this.props.onTryAutoSignin();
@@ -99,4 +99,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
+export default connect(mapStateToProps, mapDispatchToProps)(NavSideBar)

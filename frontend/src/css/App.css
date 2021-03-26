@@ -1,15 +1,10 @@
-/* site container */
+.site-container {
+  background-color: #f7f7f7 !important;
+  color: #4a5073;
+  border-radius: 0 !important;
+}
 
-/* ------------------------------------ Desktop --------------------------------- */
-/* @media (min-width: 1000px) { */
-  /* global container */
-  .site-container {
-    background-color: black !important;
-    color: #4a5073;
-  }
-/* } */
-
-/* ------------------------------------ Tablet --------------------------------- */
-
-
-/* ------------------------------------ Mobile --------------------------------- */
+.site-views {
+  padding-left: 1%;
+  padding-right: 500px;
+}
