@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 import { Segment, Sidebar, Container } from 'semantic-ui-react'
 import { Routes } from "./routes";
@@ -18,6 +18,8 @@ import ChartAccount from "./pages/coa/ChartAccount"
 // components
 import NavSideBar from "./components/NavSideBar"
 import NavTopBar from "./components/NavTopBar"
+import Footer from './components/Footer'
+import TitleBar from './components/TitleBar'
 
 const RouteWithSidebar = ({ component: Component, ...rest}) => {
 
@@ -36,6 +38,7 @@ const RouteWithSidebar = ({ component: Component, ...rest}) => {
             <NavTopBar fromChildToParentCallBack={receiveChildValue} sideBarVisibility={sideBarVisible} />
             <div className="site-views">
               <Component {...props} />
+              <Footer />
             </div>
           </Sidebar.Pusher>
       </Sidebar.Pushable>
@@ -51,7 +54,7 @@ export default () => (
       <Route exact path={Routes.SignUp.path} component={SignUp} />
       
       {/* pages */}
-      <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard}/>
+      <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard} />
       <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
       <RouteWithSidebar exact path={Routes.ChartAccount.path} component={ChartAccount} />
     </Switch>

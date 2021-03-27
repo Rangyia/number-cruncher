@@ -16,7 +16,6 @@ class UserList(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = Account.objects.all()
 
-
 class Registration(APIView):
     def post(self, request):
         serializer = RegistrationSerializer(data = request.data)

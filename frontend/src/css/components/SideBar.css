@@ -1,6 +1,11 @@
 
 .nav-side-bar {
-    background-color: #092249 !important;
+    background: rgb(11,67,140) !important;
+    background: linear-gradient(331deg, rgba(11,67,140,1) 2%, rgba(89,144,156,1) 90%) !important;
     border-radius: 0;
     border: none;
+}
+
+.sidebar-item-link:hover {
+    color: rgb(228, 228, 228) !important;
 }

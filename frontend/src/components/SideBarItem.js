@@ -13,10 +13,10 @@ const SideBarItem = (props) => {
     const itemLink = props.href.toLowerCase();
 
     return (
-        <Link to={itemLink}>
+        <Link as="a" to={itemLink}>
             <Menu.Item className='sidebar-item'>
-                <div className='sidebar-item-alignment-container' style={{color: "white"}}>
-                    <span><Icon size='large' name={props.icon} /> </span>
+                <div className='sidebar-item-alignment-container' style={{ color: "white" }} className="sidebar-item-link">
+                    <span><Icon size='large' name={props.icon}/> </span>
                     <span>{props.label}</span>
                 </div>
             </Menu.Item>

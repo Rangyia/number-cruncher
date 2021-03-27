@@ -281,7 +281,7 @@ class ChartAccountsTable extends Component {
                                 <Form>
                                     <FormGroup style={{ width: 200, display: "flex", alignItems: "center"}}>
                                         <Button className="btn btn-success" style={{ width: 40, marginRight: 10 }} onClick={() => this.handleCreateAccount()}>
-                                            <Icon size='lg' name="plus" onClick={() => this.searchList()} style={{ marginRight: 10, cursor: "pointer" }} />
+                                            <Icon size='small' name="plus" onClick={() => this.searchList()} style={{ cursor: "pointer" }} />
                                         </Button>
                                         <Icon size='lg' name="search" onClick={() => this.searchList()} style={{ marginRight: 10, cursor: "pointer" }}/>
                                         <Input style={{ float: "right" }}

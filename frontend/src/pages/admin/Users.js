@@ -1,9 +1,10 @@
 import UserList from '../../components/UserList'
+import TitleBar from '../../components/TitleBar'
 
 export const Users = (props) => {
     return (
         <div>
-            <h1>Users</h1>
+            <TitleBar header={"User Accounts"} />
             <UserList />
         </div>
     )

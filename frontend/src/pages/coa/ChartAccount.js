@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import API from '../../api'
 import * as actionTypes from "../../store/actions/auth";
 import ChartAccountsTable from '../../components/ChartAccountsTable'
 import LogTable from '../../components/LogTable'
+import TitleBar from '../../components/TitleBar'
 
 export const ChartAccount = (props) => {
     return (
         <div>
+            <TitleBar header={"Chart of Accounts"}/>
             <div>
-                <h1>Chart of Accounts</h1>
                 <div className="coa-table" style={{marginRight:50}}>
                     <ChartAccountsTable />
                 </div>
