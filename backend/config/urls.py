@@ -10,6 +10,7 @@ urlpatterns = [
     # REST_FRAMEWORK URLS
     path('api/account/', include('account.api.urls')),
     path('api/coa/', include('coa.api.urls')),
+    path('api/logs/', include('logs.api.urls')),
 
     # FRONTEND URL
     re_path(r'^', views.FrontendAppView.as_view())

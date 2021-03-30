@@ -42,8 +42,8 @@ class Account(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
     # Suspension Dates
-    suspended_start_date = models.DateField('suspend start date', blank=True)
-    suspended_end_date = models.DateField('suspend end date', blank=True)
+    suspended_start_date = models.DateField('suspend start date', default=None)
+    suspended_end_date = models.DateField('suspend end date', default=None)
 
     # Details
     first_name = models.CharField('first name', max_length=50, null=True)

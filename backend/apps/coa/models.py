@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Chart of Accounts
 class COA(models.Model):
     is_active = models.BooleanField(verbose_name='active', default=True)
     name = models.CharField(verbose_name="name", max_length=30, null=True)
