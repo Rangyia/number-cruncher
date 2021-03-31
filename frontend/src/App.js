@@ -14,6 +14,8 @@ import Dashboard from "./pages/Dashboard";
 // apps
 import Users from "./pages/admin/Users"
 import ChartAccount from "./pages/coa/ChartAccount"
+import EventLogs from "./pages/logs/EventLogs"
+import JournalEntries from "./pages/journals/Journals"
 
 // components
 import NavSideBar from "./components/NavSideBar"
@@ -57,5 +59,7 @@ export default () => (
       <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard} />
       <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
       <RouteWithSidebar exact path={Routes.ChartAccount.path} component={ChartAccount} />
+      <RouteWithSidebar exact path={Routes.Logs.path} component={EventLogs} />
+      <RouteWithSidebar exact path={Routes.Journals.path} component={JournalEntries} />
     </Switch>
 );

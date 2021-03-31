@@ -1,5 +1,11 @@
 .view-title-bar {
     margin-top: 50px !important;
+    margin-right: 0 !important;
     padding: 0 !important;
     width: 100% !important;
+}
+
+.title-bar-menu {
+    display: flex;
+    justify-content: space-between;    
 }

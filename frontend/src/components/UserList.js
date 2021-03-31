@@ -39,7 +39,7 @@ class UserList extends Component {
 
         if (item.id) {
             API
-                .put(`/api/account/admin/users/1/`, item)
+                .put(`/api/account/admin/users/${item.id}/`, item)
                 .then((res) => this.refreshList());
             return;
         }
@@ -49,12 +49,10 @@ class UserList extends Component {
     };
 
     handleDelete = (item) => {
-        if (item.is_active == true) {
-            item.is_active = false;
-            API
-                .put(`/api/account/admin/users/${item.id}/`, item)
-                .then((res) => this.refreshList());
-        }
+        item.is_active = false;
+        API
+            .put(`/api/account/admin/users/${item.id}/`, item)
+            .then((res) => this.refreshList());
         return;
     };
 

@@ -43,13 +43,13 @@ export const NavTopBar = (props) => {
     })
 
     return (
-        <Menu header inverted className="global-header-bar" style={{ backgroundColor: "transparent" }}>
+        <Menu inverted className="global-header-bar" style={{ backgroundColor: "transparent" }}>
             <div className="global-header-container container-left">
                 <MenuItem as='a' onClick={() => props.fromChildToParentCallBack(!props.sideBarVisibility)}>
                     {toggleSideBarIcon(props.sideBarVisibility)}
                 </MenuItem>
                 <MenuItem>
-                    <div class="ui small image">
+                    <div className="ui small image">
                         <img src={photo} alt="profile pic" style={{ width: 40 }} />
                     </div>
                     <h2>{localStorage.getItem("name")}</h2>
@@ -66,7 +66,6 @@ export const NavTopBar = (props) => {
                     <Icon className="top-nav-icon" name="cog" />
                 </MenuItem>
                 <MenuItem className="top-nav-menu">
-                    {/* <Dropdown text={getUserInitial(localStorage.getItem("firstName")) + getUserInitial(localStorage.getItem("lastName"))} options={} simple item style={{ backgroundColor: "#00b5ad" }} /> */}
                     <Dropdown style={{ fontSize: 18, color: "#4a5073", fontWeight: 900 }} icon='none' text={getUserInitial(localStorage.getItem("firstName")) + getUserInitial(localStorage.getItem("lastName"))} className="top-nav-menu">
                         <Dropdown.Menu className="top-nav-menu">
                             <Dropdown.Item style={{ color: "#4a5073" }} onClick={() => props.logout().then(window.location.replace("/"))} text='Logout' className="top-nav-menu"/>

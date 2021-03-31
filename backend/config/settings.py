@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'account',
     'coa',
     'logs',
+    'journals',
 
     # Django Apps
     'django.contrib.admin',

@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from "../../store/actions/auth";
-import ChartAccountsTable from '../../components/ChartAccountsTable'
 import LogTable from '../../components/LogTable'
 import TitleBar from '../../components/TitleBar'
 
-export const ChartAccount = (props) => {
+export const EventLogs = (props) => {
     return (
         <div>
-            <TitleBar header={"Chart of Accounts"}/>
+            <TitleBar header={"Event Logs"} />
             <div>
-                <div className="coa-table" style={{ marginRight:50 }}>
-                    <ChartAccountsTable />
+                <div className="log-table" style={{ marginRight: 50 }}>
+                    <LogTable />
                 </div>
             </div>
         </div>
@@ -29,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChartAccount)
+export default connect(mapStateToProps, mapDispatchToProps)(EventLogs)

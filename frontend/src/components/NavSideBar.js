@@ -1,14 +1,12 @@
 // React
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
 
 // Redux
 import { connect } from 'react-redux'
 import * as actionTypes from "../store/actions/auth";
 
 // Components
-import { Header, Icon, Image, Menu, Segment, Sidebar, SidebarPushable } from 'semantic-ui-react'
-// import { Header, Icon, Image, ItemDescription, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import { Image, Menu, Sidebar } from 'semantic-ui-react'
 import SideBarItem from './SideBarItem';
 import '../css/components/SideBar.css';
 import logo from '../assets/img/site-logo-topbar.png'
@@ -28,6 +26,11 @@ const admin_items = [
         label: 'Chart of Accounts'
     },
     {
+        href: '/apps/journals',
+        icon: 'book',
+        label: 'Journals'
+    },
+    {
         href: '/apps/logs',
         icon: 'clipboard list',
         label: 'Logs'
@@ -41,7 +44,12 @@ const staff_items = [
         label: 'Chart of Accounts'
     },
     {
-        href: '/apps/Logs',
+        href: '/apps/journals',
+        icon: 'book',
+        label: 'Journals'
+    },
+    {
+        href: '/apps/logs',
         icon: 'clipboard list',
         label: 'Logs'
     },

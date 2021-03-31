@@ -82,12 +82,11 @@ export const authLogin = (username, password) => {
       })
       .catch((err) => {
         dispatch(authFail(err));
-        window.location.href = "/";
       });
   };
 };
 
-export const authSignup = (username, email, password1, password2) => {
+export const authSignup = (username, email, password1, password2, firstName, lastName, dob) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
@@ -96,21 +95,28 @@ export const authSignup = (username, email, password1, password2) => {
         email: email,
         password: password1,
         password2: password2,
+        first_name: firstName,
+        last_name: lastName,
+        dob: dob
       })
       .then((res) => {
         const token = res.data.key;
         const is_admin = res.data.is_admin;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+        const firstName = ((res.data.first_name != null && res.data.first_name != NaN) ? res.data.first_name : "Anonymous");
+        const lastName = ((res.data.last_name != null && res.data.last_name != NaN) ? res.data.last_name : "Anonymous");
         localStorage.setItem("token", token);
         localStorage.setItem("is_admin", is_admin);
         localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("username", username);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("lastName", lastName);
         dispatch(authSuccess(token));
         window.location.replace("/dashboard");
         dispatch(checkAuthTimeout(3600));
       })
       .catch((err) => {
         dispatch(authFail(err));
-        window.location.replace("/signup");
       });
   };
 };

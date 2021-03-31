@@ -9,5 +9,6 @@ export const Routes = {
     // apps
     Users: { path: "/apps/users" },
     ChartAccount: { path: "/apps/chartofaccounts" },
-    Logs: { path: "/apps/users" },
+    Logs: { path: "/apps/logs" },
+    Journals: { path: "/apps/journals" },
 }

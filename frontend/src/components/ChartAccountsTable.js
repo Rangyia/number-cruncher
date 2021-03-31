@@ -5,12 +5,12 @@ import {
     Form,
     FormGroup,
     Input,
-    Label,
     Table,
     Button,
 } from "reactstrap";
 import { Icon } from "semantic-ui-react";
 import COAModal from "../components/COAModal"
+import '../css/components/ChartAccountsTable.css'
 
 // Redux
 import { connect } from 'react-redux'
@@ -69,7 +69,7 @@ class ChartAccountsTable extends Component {
             order: "",
             statement: ""
         };
-        this.setState({ activeAccount: account, modal: !this.state.modal, isAdd: !this.state.isAdd });
+        this.setState({ activeAccount: account, modal: !this.state.modal, isAdd: true });
     }
 
     handleEditAccount = (account) => {
@@ -178,7 +178,7 @@ class ChartAccountsTable extends Component {
                 (account) => { 
                     if (account.name == null || account.number == null) {
                     } else {
-                        return account.name.includes(this.state.searchParam) || account.number.includes(this.state.searchParam)
+                        return (account.name.includes(this.state.searchParam) || account.number.includes(this.state.searchParam)) && account.is_active != false
                     }
                 }
             )
@@ -283,7 +283,7 @@ class ChartAccountsTable extends Component {
                                         <Button className="btn btn-success" style={{ width: 40, marginRight: 10 }} onClick={() => this.handleCreateAccount()}>
                                             <Icon size='small' name="plus" onClick={() => this.searchList()} style={{ cursor: "pointer" }} />
                                         </Button>
-                                        <Icon size='lg' name="search" onClick={() => this.searchList()} style={{ marginRight: 10, cursor: "pointer" }}/>
+                                        <Icon size='small' name="search" onClick={() => this.searchList()} style={{ marginRight: 10, cursor: "pointer" }}/>
                                         <Input style={{ float: "right" }}
                                         type="search"
                                         id="acc-search"
@@ -302,22 +302,20 @@ class ChartAccountsTable extends Component {
                                     />
                                 </Form>
                             </th>
-                            <th scope="col">
-                                <Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("name")}>Name</Button>
-                            </th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("number")}>Number</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("description")}>Description</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("normal side")}>Normal Side</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("category")}>Category</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("subcategory")}>Subcategory</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("initial balance")}>Initial balance</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("debit")}>Debit</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("credit")}>Credit</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("balance")}>Balance</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("date added")}>Date Added</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("user id")}>User_id</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("order")}>Order</Button></th>
-                            <th scope="col"><Button style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("statement")}>Statement</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("name")}>Name</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("number")}>Number</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("description")}>Description</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("normal side")}>Normal Side</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("category")}>Category</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("subcategory")}>Subcategory</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("initial balance")}>Initial balance</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("debit")}>Debit</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("credit")}>Credit</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("balance")}>Balance</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("date added")}>Date Added</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("user id")}>User_id</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("order")}>Order</Button></th>
+                            <th scope="col"><Button className="table-header-label" style={{ backgroundColor: "transparent" }} onClick={() => this.renderAccounts("statement")}>Statement</Button></th>
                         </tr>
                     </thead>
                     <tbody>

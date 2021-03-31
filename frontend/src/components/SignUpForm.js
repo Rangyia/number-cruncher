@@ -17,6 +17,9 @@ class SignUpForm extends Component {
         email: "",
         password1: "",
         password2: "",
+        firstName: "",
+        lastName: "",
+        dob: ""
     };
 
     handleChange = (e) => {
@@ -26,14 +29,14 @@ class SignUpForm extends Component {
     };
 
     handleSubmit = () => {
-        const { username, email, password1, password2 } = this.state;
-        this.props.signup(username, email, password1, password2);
-        this.setState({ username: "", email: "", password1: "", password2: "" });
+        const { username, email, password1, password2, firstName, lastName, dob } = this.state;
+        this.props.signup(username, email, password1, password2, firstName, lastName, dob);
+        this.setState({ username: "", email: "", password1: "", password2: "", firstName: "", lastName: "", dob: null });
     };
 
     render() {
         const { loading, error } = this.props;
-        const { username, email, password1, password2 } = this.state;
+        const { username, email, password1, password2, firstName, lastName, dob } = this.state;
         return (
             <>
             <Grid
@@ -83,7 +86,33 @@ class SignUpForm extends Component {
                                 icon="lock"
                                 iconPosition="left"
                                 placeholder="Confirm password"
-                                type="password"
+                            />
+                            <Form.Input
+                                fluid
+                                name="firstName"
+                                value={firstName}
+                                onChange={this.handleChange}
+                                icon="check"
+                                iconPosition="left"
+                                placeholder="First Name"
+                            />
+                            <Form.Input
+                                fluid
+                                name="lastName"
+                                value={lastName}
+                                onChange={this.handleChange}
+                                icon="check"
+                                iconPosition="left"
+                                placeholder="Last Name"
+                            />
+                            <Form.Input
+                                fluid
+                                name="dob"
+                                value={dob}
+                                onChange={this.handleChange}
+                                icon="calendar"
+                                iconPosition="left"
+                                type="date"
                             />
                             {error && (
                                 <Message
@@ -122,8 +151,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: (username, email, password1, password2) =>
-            dispatch(authSignup(username, email, password1, password2)),
+        signup: (username, email, password1, password2, firstName, lastName, dob) =>
+            dispatch(authSignup(username, email, password1, password2, firstName, lastName, dob)),
     };
 };
 
