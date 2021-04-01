@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Divider, Button } from 'semantic-ui-react';
+import { Container, Divider, Button, Icon } from 'semantic-ui-react';
 import '../css/components/TitleBar.css'
 
 export default function TitleBar(props) {
@@ -13,6 +13,7 @@ export default function TitleBar(props) {
         <Container className="view-title-bar">
             <div className="title-bar-menu">
                 <h2>{header}</h2>
+                <Icon as="a" name="check"/>
                 <Button color='teal' onClick={() => window.location.replace('/apps/journals')}>Journals</Button>
             </div>
             <Divider />
