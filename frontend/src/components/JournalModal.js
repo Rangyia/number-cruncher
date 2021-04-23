@@ -135,6 +135,17 @@ export default class JournalModal extends Component {
                                 placeholder="Enter Comment"
                             />
                         </FormGroup>
+                        <FormGroup>
+                            <Label for="account-subcategory">File Upload</Label>
+                            <Input
+                                type="text"
+                                id="entry-comment"
+                                name="file_upload"
+                                value={this.state.activeItem.file_upload}
+                                onChange={this.handleChange}
+                                placeholder="Enter File"
+                            />
+                        </FormGroup>
                     </Form>
                 </ModalBody>
                 <ModalFooter>

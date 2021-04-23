@@ -11,6 +11,7 @@ class Journal(models.Model):
     date = models.DateField(verbose_name='date', auto_now_add=True, null=True)
     source = models.CharField(verbose_name='source', max_length=255, null=True)
     comment = models.CharField(verbose_name='comment', max_length=255, null=True)
+    file_upload = models.CharField(verbose_name='file_upload', max_length=255, null=True)
 
     def __str__(self):
         return self.name

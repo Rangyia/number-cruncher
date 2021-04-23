@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import API from '../api'
-import { Header, Table, Button, Checkbox, Dropdown  } from 'semantic-ui-react'
+import { Header, Table, Button, Checkbox, Dropdown, Input } from 'semantic-ui-react'
 import JouralModal from '../components/JournalModal'
 import JournalModal from '../components/JournalModal';
+import '../css/components/JournalTable.css'
 
 export default function LogTable() {
     const [journalList, setJournalList] = useState(null);
@@ -53,30 +54,24 @@ export default function LogTable() {
             setSelectedJournals(selectedJournals.filter((el) => el.id != item.id))
     }
 
-    const verifyIsCheked = (journalList, item) => {
-        let arr = journalList.filter((el) => el.id == item.id);
-        if (arr.length == 0)
-            return false;
-        else 
-            return true;
-    }
-
     const handleSubmit = async (item) => {
         setModal(!modal)
         setIsAdd(true);
 
-        if (selectedJournals != null || selectedJournals[0] != undefined) {
-            handleEditAccount(item)
-        }
+        if (item.id)
+            API.put(`/api/journals/admin/${item.id}/`, item).then(res => res.data);
+        else
+            API.post(`/api/journals/admin/`, item).then(res => res.data);
 
-        API.post(`/api/journals/admin/`, item).then(res => res.data);
         refreshItems();
         setSelectedJournals([]);
     }
 
     const handleEditAccount = (item) => {
+        console.log(selectedJournals[0])
+        setActiveItem(selectedJournals[0]);
         setIsAdd(false);
-        setActiveItem(selectedJournals[0])
+        setModal(!modal)
     }
 
     const deleteSelectedRows = async (journals) => {
@@ -84,25 +79,13 @@ export default function LogTable() {
             API.delete(`/api/journals/admin/${journals[entry].id}/`).then(res => res.data);
         }
         refreshItems();
+        window.location.replace('/apps/journals')
     }
 
     const handleChange = async (e, item) => {
         item.status = Number.parseInt(e.value)
         await API.put(`/api/journals/admin/${item.id}/`, item).then(res => res.data);
         refreshItems();
-    }
-
-    const mapValueToStatus = (value) => {
-        switch (value) {
-            case "Approved":
-                return 1
-            case "Pending":
-                return 2
-            case "Rejected":
-                return 3
-            default:
-                return "Unknown"
-        }
     }
 
     const mapStatusToValue = (status) => {
@@ -198,6 +181,13 @@ export default function LogTable() {
                         <Table.Cell>
                             <Header as='h4'>{(log["comment"] != null ? log["comment"] : "N/A")}</Header>
                         </Table.Cell>
+                        <Table.Cell>
+                            <Header as='h4'>{(log["file_upload"] != null ? log["file_upload"] : "N/A")}</Header>
+                            <input
+                                type="file"
+                                hidden
+                            />
+                        </Table.Cell>
                     </Table.Row>
                 )
             });
@@ -206,10 +196,19 @@ export default function LogTable() {
 
     return (
         <div>
-            <div>
-                <Button color='green' onClick={() => handleAddItem()}>Add</Button>
-                <Button color='blue' onClick={() => handleAddItem(selectedJournals[0])}>Edit</Button>
-                <Button color='red' onClick={() => deleteSelectedRows(selectedJournals)}>Delete</Button>
+            <div className="journal-title-bar">
+                <div>
+                    <Button color='green' onClick={() => handleAddItem()}>Add</Button>
+                    <Button color='blue' onClick={() => handleEditAccount(selectedJournals[0])}>Edit</Button>
+                    <Button color='red' onClick={() => deleteSelectedRows(selectedJournals)}>Delete</Button>
+                </div>
+                <div>
+                    <Input style={{ float: "right" }}
+                        type="search"
+                        id="entry-search"
+                        placeholder="Search"
+                    />
+                </div>
             </div>
             <Table cell padded style={{ width: "100%" }}>
                 <Table.Header>
@@ -223,6 +222,7 @@ export default function LogTable() {
                         <Table.HeaderCell>Amount</Table.HeaderCell>
                         <Table.HeaderCell>Source</Table.HeaderCell>
                         <Table.HeaderCell>Comment</Table.HeaderCell>
+                        <Table.HeaderCell>File Uploads</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
